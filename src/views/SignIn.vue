@@ -41,8 +41,8 @@
     data() {
       return {
         input: {
-          email: "adam-vukelic@hotmail.com",
-          password: "adam123"
+          email: "",
+          password: ""
         }
       }
     },
