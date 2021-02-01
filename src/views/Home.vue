@@ -2,7 +2,7 @@
   <div class="home">
     <!-- <navigation/> -->
     <div class="main_div">
-      <div style="height: 25%; width: 70%;">
+      <div class="chart_container">
         <line-chart
           v-if="loaded"
           :chartdata="tempData"
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="main_div">
-      <div style="height: 25%; width: 70%;">
+      <div class="chart_container">
         <line-chart
           v-if="loaded"
           :chartdata="humData"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="main_div">
-      <div style="height: 25%; width: 70%;">
+      <div class="chart_container">
         <line-chart
           v-if="loaded"
           :chartdata="pressData"
@@ -118,10 +118,18 @@ export default {
   .home{
     background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(241,241,241,1) 50%, rgba(222,222,222,1) 100%);
   }
+  
+  .chart_container{
+    width: 70%;
+  }
 
   @media(max-width: 980px){
     .main_div{
-    flex-direction: column-reverse;
-  }
+      flex-direction: column-reverse;
+    }
+
+    .chart_container{
+      width: 98%;
+    }
   }
 </style>

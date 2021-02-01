@@ -15,7 +15,7 @@ Vue.use(VueRouter)
 Vue.use(Vuex);
 
 logedin = false;
-if(localStorage.getItem('logedin') === true){
+if(localStorage.getItem('logedin') === 'true'){
   var logedin = true;
 }
 

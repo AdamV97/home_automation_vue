@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="main-signin">
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3 mt-3>
         <form>
@@ -63,3 +63,9 @@
     }
   }
 </script>
+
+<style>
+  .main-signin{
+    width: 70%;
+  }
+</style>
