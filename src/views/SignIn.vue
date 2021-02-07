@@ -49,15 +49,34 @@
     methods: {
       login: function() {
         axios({ method: "POST", "url": json.api_root + "login", "data": this.input, "headers": { "content-type": "application/json" } }).then(result => {
-            this.response = result.data;
-            if(result.data.logedin){
-              localStorage.setItem('access_token', result.data.access_token);
-              localStorage.setItem('logedin', true);
-              this.$store.commit("setAuthentication", true);
-              this.$router.replace({ name: "home" });
-            }
+          if(result.data.logedin){
+            this.$notify({
+              group: 'bottom-notification',
+              title: 'Success!',
+              type: 'success ',
+              text: 'Signed in!'
+            });
+            localStorage.setItem('access_token', result.data.access_token);
+            localStorage.setItem('logedin', true);
+            this.$store.commit("setAuthentication", true);
+            this.$router.replace({ name: "home" });
+          }else{
+            this.$notify({
+              group: 'bottom-notification',
+              title: 'Error!',
+              type: 'error',
+              text: result.data.message
+            });
+          }
         }, error => {
-            console.error(error);
+          if(error.response.data.message){
+            this.$notify({
+              group: 'bottom-notification',
+              title: 'Error!',
+              type: 'error',
+              text: error.response.data.message
+            });
+          }
         });
       },
     }

@@ -7,7 +7,7 @@
           <th>Type</th>
           <th>Room</th>
           <th>Battery percentage</th>
-          <th>Voltage</th>
+          <!-- <th>Voltage</th> -->
           <th>Linkquality</th>
         </tr>
       </thead>
@@ -17,7 +17,7 @@
           <td>{{item.type}}</td>
           <td>{{item.room_name}}</td>
           <td>{{item.battery}}%</td>
-          <td>{{item.voltage}}v</td>
+          <!-- <td>{{item.voltage}}v</td> -->
           <td>{{item.linkquality}}</td>
         </tr>
       </tbody>

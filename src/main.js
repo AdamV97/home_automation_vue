@@ -8,11 +8,15 @@ import VueRouter from 'vue-router'
 import Home from './views/Home.vue'
 import SignIn from './views/SignIn.vue'
 import deviceStatus from './components/DeviceStatus.vue'
+import Notifications from 'vue-notification'
+import axios from "axios";
+import json from '../api.json'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(Notifications);
 
 logedin = false;
 if(localStorage.getItem('logedin') === 'true'){
@@ -62,9 +66,23 @@ const router = new VueRouter({
       path: '/signOut',
       name: "signOut",
       beforeEnter: (to, from, next) => {
+        let access_token =  localStorage.getItem('access_token');
+
+        axios({ method: "GET", "url": json.api_root + "logout", "headers": { "content-type": "application/json", 'Authorization': 'Bearer ' + access_token}}).then(result => {
+          if(!result.data.logedin){
+            Vue.notify({
+              group: 'bottom-notification',
+              title: 'Success!',
+              type: 'success ',
+              text: 'Signed out!'
+            });
+          }
+        });
+
         store.commit("setAuthentication", false);
         localStorage.setItem('access_token', '');
         localStorage.setItem('logedin', false);
+
         next({ path: '/home' });
       }
     }
